@@ -125,7 +125,7 @@ defmodule RingLogger.Server do
       |> adjust_left(first_index)
       |> adjust_right(last_index)
 
-    items = Enum.slice(state.cb, adjusted_start_index, adjusted_n)
+    items = Enum.slice(state.cb, adjusted_start_index, abs(adjusted_n))
 
     {:reply, items, state}
   end
