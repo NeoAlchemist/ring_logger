@@ -161,8 +161,10 @@ defmodule RingLogger do
 
   Set n to 0 to get entries to the end
   """
+
   @spec get(non_neg_integer(), non_neg_integer()) :: [entry()]
-  defdelegate get(index \\ 0, n \\ 0), to: Server
+  def get(index, n) when is_integer(index) and is_integer(n), do: Server.get(index, n)
+  def get(_), do: Server.get(0, 0)
 
   @doc """
   Update the logger configuration.
